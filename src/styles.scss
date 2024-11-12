@@ -1,7 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "@ng-select/ng-select/themes/material.theme.css";
+
 @import "assets/fonts";
 body {
   @apply font-sans;
+}
+
+/* Dark theme for ng-select */
+.ng-select {
+  color: #fff;
+}
+
+.ng-select .ng-select-container {
+  @apply bg-gray-900;
+  border-color: #555;
+  color: #fff;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-input input {
+  color: #fff;
+}
+
+.ng-select .ng-dropdown-panel {
+  @apply bg-gray-700;
+  color: #fff;
+  border-color: #555;
+}
+
+.ng-select .ng-dropdown-panel .ng-option {
+  @apply bg-gray-700;
+  color: #fff;
+}
+
+.ng-select .ng-dropdown-panel .ng-option:hover {
+  @apply bg-gray-700;
+}
+
+.ng-select .ng-dropdown-panel .ng-option-selected {
+  @apply bg-gray-700;
+  color: #fff;
+}
+
+.ng-select .ng-select-container .ng-placeholder {
+  color: #bbb !important; /* Lighter color for the placeholder text */
+}
+
+.ng-select .ng-select-container .ng-hint,
+.ng-select .ng-select-container .ng-value-container .ng-value {
+  color: #fff !important; /* White color for labels and selected value */
+}
+
+/* Clear (X) Button */
+.ng-select .ng-clear-wrapper {
+  color: #fff !important;
+}
+
+.ng-select .ng-clear-wrapper:hover {
+  color: #ddd !important; /* Lighter color on hover */
 }

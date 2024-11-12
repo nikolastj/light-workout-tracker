@@ -1,1 +1,23 @@
-<p>workout works!</p>
+<div class="init-page p-4 bg-gray-900 w-full h-full flex flex-col">
+  <button
+    *ngIf="!hideButton; else exerciseConf"
+    mat-raised-button
+    color="primary"
+    class="mt-4 p-4 bg-orange-500 text-gray-900 text-2xl rounded-lg uppercase font-bold"
+    (click)="addExercise()"
+  >
+    Add Exercise
+  </button>
+</div>
+
+<ng-template #exerciseConf>
+    <ng-select
+      [items]="exerciseList"
+      bindLabel="name"
+      placeholder="Select an exercise"
+      [(ngModel)]="currentExerciseName"
+      [searchable]="true"
+      (clear)="clearExercise()"
+    >
+    </ng-select>
+</ng-template>
