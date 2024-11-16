@@ -1,3 +1,6 @@
+@use "@angular/material" as mat;
+@include mat.core();
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -59,4 +62,73 @@ body {
 
 .ng-select .ng-clear-wrapper:hover {
   color: #ddd !important; /* Lighter color on hover */
+}
+.ng-arrow {
+  color: white !important;
+}
+
+//input
+/* Make the floating label white */
+.mat-mdc-form-field .mat-mdc-floating-label {
+  color: white !important;
+}
+
+/* Make the input text color white */
+.mat-mdc-form-field .mat-mdc-input-element {
+  color: white !important;
+}
+
+/* Placeholder text color for an empty field */
+.mat-mdc-form-field.mat-mdc-form-field-empty .mat-mdc-floating-label {
+  color: rgba(255, 255, 255, 0.6) !important; /* Slightly transparent white */
+}
+
+/* Underline color adjustments */
+.mat-mdc-form-field .mdc-line-ripple {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.4
+  ) !important; /* Inactive underline */
+}
+
+.mat-mdc-form-field .mdc-line-ripple.mdc-line-ripple--active {
+  background-color: white !important; /* Active underline */
+}
+
+/* Hint text color */
+.mat-mdc-form-field .mat-mdc-form-field-hint-wrapper {
+  color: white !important;
+}
+
+//size
+/* Set the font size and height for all Angular Material input fields */
+.mat-mdc-form-field-infix {
+  font-size: 2rem;       /* Double the font size */
+  height: 4rem;          /* Increase the height of the input area */
+  padding: 0.5rem 1rem;  /* Add padding for a more spacious feel */
+}
+
+/* Set the font size for all floating labels */
+.mat-mdc-floating-label {
+  font-size: 1.5rem;     /* Increase label font size */
+  top: -0.5rem;          /* Adjust position if necessary */
+}
+
+/* Optional: Adjust hint text (helper text) if used */
+.mat-mdc-form-field-hint-wrapper {
+  font-size: 1.25rem;    /* Make helper text larger */
+}
+/* Set the color of the suffix text to white */
+.mat-mdc-form-field .mat-mdc-form-field-icon-suffix,
+.mat-mdc-form-field .mat-mdc-form-field-infix .mat-suffix {
+  color: white !important;
+  font-size: 1.5rem; /* Adjust as needed to double the size */
+  line-height: 1.5rem;
+}
+
+//line under input
+.mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align{
+  height: 0 !important;
 }
