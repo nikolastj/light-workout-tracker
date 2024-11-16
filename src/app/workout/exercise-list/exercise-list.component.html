@@ -1,0 +1,27 @@
+<div class="flex flex-col gap-4">
+  @for (exercise of workout?.exercises; track exercise.id; let index = $index) {
+  <div class="flex flex-col gap-2">
+    <div class="text-gray-100 underline font-bold">
+      {{ index + 1 }}. {{ exercise.name }}
+    </div>
+    <div class="flex flex-wrap">
+      <div
+        class="flex items-center text-gray-100 text-xs border-r-2 border-solid border-white pr-1"
+      >
+        <div class="flex flex-col items-center justify-center text-gray-500">
+          <span>SET</span><span class="text-xs"> kg/reps</span>
+        </div>
+      </div>
+      @for (set of exercise?.sets; track set; let i = $index) {
+      <div
+        class="flex items-center text-gray-100 text-xl border-r-2 border-solid border-white px-1"
+      >
+        <span class="text-gray-400">{{ i + 1 }}.&nbsp;</span>
+        {{ set.weight }} <i class="fas fa-times text-gray-400"></i>
+        {{ set.reps }}
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

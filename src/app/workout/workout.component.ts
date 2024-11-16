@@ -8,6 +8,8 @@ import { Set } from '../models/set.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Exercise } from '../models/exercise.model';
+import { ExerciseListComponent } from './exercise-list/exercise-list.component';
+import { CompleteWorkoutComponent } from './complete-workout/complete-workout.component';
 
 @Component({
   selector: 'app-workout',
@@ -18,14 +20,57 @@ import { Exercise } from '../models/exercise.model';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    ExerciseListComponent,
+    CompleteWorkoutComponent,
   ],
   templateUrl: './workout.component.html',
   styleUrl: './workout.component.scss',
 })
 export class WorkoutComponent {
-  workout = new Workout();
+  workout = {
+    dateCreated: '2024-11-16T18:51:36.196Z',
+    id: '20241116195136',
+    exercises: [
+      {
+        id: 'Hip Thrust',
+        name: 'Hip Thrust',
+        sets: [
+          {
+            reps: 12,
+            weight: 32,
+          },
+          {
+            reps: 12,
+            weight: 32,
+          },
+        ],
+      },
+      {
+        id: 'Chest Press',
+        name: 'Chest Press',
+        sets: [
+          {
+            reps: 10,
+            weight: 30,
+          },
+          {
+            reps: 10,
+            weight: 30,
+          },
+          {
+            reps: 10,
+            weight: 30,
+          },
+          {
+            reps: 10,
+            weight: 30,
+          },
+        ],
+      },
+    ],
+  } as any as Workout;
   hideButton = true; //false;
-  currentExerciseName?: string = 'Hip Thrust';
+  currentExerciseName?: string; //= 'Hip Thrust';
   currentSetWeight = 30;
   reps = 10;
   exerciseList = Exercises;
@@ -39,6 +84,9 @@ export class WorkoutComponent {
     if (this.currentExercise?.sets.length) {
       this.currentExercise.sets.pop();
     } else {
+      if (this.currentExercise) {
+        this.workout.exercises.pop();
+      }
       this.hideButton = false;
       delete this.currentExerciseName;
     }
@@ -112,5 +160,9 @@ export class WorkoutComponent {
     );
     if (!exercise) return null;
     return exercise.sets[exercise.sets.length - 1];
+  }
+
+  addComment() {
+    console.log('not implemented');
   }
 }

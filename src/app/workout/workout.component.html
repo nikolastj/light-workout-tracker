@@ -34,19 +34,19 @@
       color="primary"
       class="items-center justify-center flex bg-gray-700 text-2xl rounded-lg uppercase font-bold w-12"
       (click)="clearLastSetOrExercise()"
+      [ngClass]="{ 'invisible pointer-events-none': !currentExerciseName }"
     >
       <i class="fas fa-times text-gray-100"></i>
     </button>
   </div>
-  <button
+  <div *ngIf="!currentExerciseName" class="flex flex-grow">
+    <app-exercise-list [workout]="workout"></app-exercise-list>
+  </div>
+  <app-complete-workout
+    class="w-full"
     *ngIf="!currentExerciseName && workout.exercises.length"
-    mat-raised-button
-    color="primary"
-    class="p-4 mt-20 bg-orange-500 text-gray-900 text-2xl rounded-lg uppercase font-bold"
-    (click)="addExercise()"
-  >
-    Complete Workout
-  </button>
+    [workout]="workout"
+  ></app-complete-workout>
 </ng-template>
 
 <ng-template #SetControlsRef>
@@ -221,7 +221,7 @@
     mat-raised-button
     color="primary"
     class="w-full p-2 bg-gray-700 text-gray-100 text-2xl rounded-lg uppercase font-bold flex items-center justify-center"
-    (click)="completeExercise()"
+    (click)="addComment()"
   >
     <i class="fas fa-comment-alt text-gray-100 mr-2"></i>
     Add comment
