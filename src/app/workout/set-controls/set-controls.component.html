@@ -1,0 +1,174 @@
+<div class="flex w-full gap-4 items-center justify-around">
+  <div class="flex flex-col w-[calc(100%-96px-32px)]">
+    <mat-form-field appearance="fill" class="mt-4">
+      <mat-label>Set Weight</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="currentSetWeight"
+        placeholder="Enter weight"
+      />
+      <span matSuffix>kg</span>
+    </mat-form-field>
+    <div class="text-gray-500 text-sm pt-1 uppercase h-6">
+      <span *ngIf="lastSet as LastSet">
+        Previous set: {{ LastSet.weight }}kg
+      </span>
+      &nbsp;
+    </div>
+  </div>
+
+  <!-- Buttons for incrementing/decrementing by ±1 -->
+  <div class="flex flex-col items-center space-y-1">
+    <button
+      mat-raised-button
+      color="primary"
+      class="items-center justify-center flex bg-gray-700 text-2xl rounded-lg w-12 h-12"
+      (click)="incrementWeight(1)"
+    >
+      <i class="fas fa-chevron-up text-gray-100"></i>
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="items-center justify-center flex bg-gray-700 text-2xl rounded-lg w-12 h-12"
+      (click)="incrementWeight(-1)"
+    >
+      <i class="fas fa-chevron-down text-gray-100"></i>
+    </button>
+  </div>
+
+  <!-- Buttons for incrementing/decrementing by ±10 -->
+  <div class="flex flex-col items-center space-y-1">
+    <button
+      mat-raised-button
+      color="primary"
+      class="items-center justify-center flex bg-gray-700 text-2xl rounded-lg w-12 h-12"
+      (click)="incrementWeight(10)"
+    >
+      <i class="fas fa-angle-double-up text-gray-100"></i>
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="items-center justify-center flex bg-gray-700 text-2xl rounded-lg w-12 h-12"
+      (click)="incrementWeight(-10)"
+    >
+      <i class="fas fa-angle-double-down text-gray-100"></i>
+    </button>
+  </div>
+</div>
+
+<div class="flex w-full gap-4 items-center justify-around pr-16">
+  <div class="flex flex-col flex-grow w-[calc(100%-96px-32px)] justify-center">
+    <mat-form-field appearance="fill">
+      <mat-label>Set Reps</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="reps"
+        placeholder="Enter reps"
+      />
+      <span matSuffix>reps</span>
+    </mat-form-field>
+    <div class="text-gray-500 text-sm pt-1 uppercase h-6">
+      <span *ngIf="lastSet as LastSet">
+        Previous set: {{ LastSet.reps }} reps
+      </span>
+      &nbsp;
+    </div>
+  </div>
+
+  <div class="flex flex-col items-center space-y-1">
+    <button
+      mat-raised-button
+      color="primary"
+      class="items-center justify-center flex bg-gray-700 text-2xl rounded-lg w-12 h-12"
+      (click)="incrementReps(1)"
+    >
+      <i class="fas fa-chevron-up text-gray-100"></i>
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="items-center justify-center flex bg-gray-700 text-2xl rounded-lg w-12 h-12"
+      (click)="incrementReps(-1)"
+    >
+      <i class="fas fa-chevron-down text-gray-100"></i>
+    </button>
+  </div>
+</div>
+
+<button
+  mat-raised-button
+  color="primary"
+  class="w-full p-2 bg-green-500 text-gray-900 text-2xl rounded-lg uppercase font-bold flex items-center justify-center"
+  (click)="addSet()"
+>
+  <i class="fas fa-check text-gray-900 mr-2"></i>
+  Add {{ setNumber
+  }}<span class="text-sm align-sub">{{ getSuffix(setNumber) }}</span
+  >&nbsp;Set
+</button>
+
+<div class="flex flex-wrap h-[88px]">
+  <div
+    class="flex items-center text-gray-100 text-xs border-r-2 border-solid border-white pr-1"
+  >
+    <div class="flex flex-col items-center justify-center">
+      <span>SET</span><span class="text-xs"> kg/reps</span>
+    </div>
+  </div>
+  @for (set of currentExercise?.sets; track set; let i = $index) {
+  <div
+    class="flex items-center text-gray-100 text-xl border-r-2 border-solid border-white px-1"
+  >
+    <span class="text-gray-400">{{ i + 1 }}.&nbsp;</span>
+    {{ set.weight }} <i class="fas fa-times text-gray-400"></i> {{ set.reps }}
+  </div>
+  }
+</div>
+
+<div class="flex flex-col">
+  <div class="uppercase pb-2 text-xs text-gray-400">
+    previous exercise session DD-MM-YYYY
+  </div>
+  <div class="flex flex-wrap h-[88px]">
+    <div
+      class="flex items-center text-gray-100 text-xs border-r-2 border-solid border-white pr-1"
+    >
+      <div class="flex flex-col items-center justify-center">
+        <span>SET</span><span class="text-xs"> kg/reps</span>
+      </div>
+    </div>
+    @for (set of currentExercise?.sets; track set; let i = $index) {
+    <div
+      class="flex items-center text-gray-100 text-xl border-r-2 border-solid border-white px-1"
+    >
+      <span class="text-gray-400">{{ i + 1 }}.&nbsp;</span>
+      {{ set.weight }} <i class="fas fa-times text-gray-400"></i>
+      {{ set.reps }}
+    </div>
+    }
+  </div>
+</div>
+
+<button
+  mat-raised-button
+  color="primary"
+  class="w-full p-2 bg-gray-700 text-gray-100 text-2xl rounded-lg uppercase font-bold flex items-center justify-center"
+  (click)="completeExercise()"
+>
+  <i class="fas fa-check-circle text-gray-100 mr-2"></i>
+  Complete Exercise
+</button>
+
+<button
+  mat-raised-button
+  color="primary"
+  class="w-full p-2 bg-gray-700 text-gray-100 text-2xl rounded-lg uppercase font-bold flex items-center justify-center"
+  (click)="addComment()"
+>
+  <i class="fas fa-comment-alt text-gray-100 mr-2"></i>
+  Add comment
+</button>
