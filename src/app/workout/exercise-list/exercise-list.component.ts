@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 import { Workout } from '../../models/workout.model';
 import { CommonModule } from '@angular/common';
+import { Exercise } from '../../models/exercise.model';
 
 @Component({
   selector: 'app-exercise-list',
@@ -11,4 +12,5 @@ import { CommonModule } from '@angular/common';
 })
 export class ExerciseListComponent {
   @Input() workout?: Workout;
+  loadExercise = output<Exercise>();
 }

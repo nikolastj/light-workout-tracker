@@ -50,6 +50,7 @@ export class WorkoutComponent {
       this.hideButton = false;
       delete this.currentExerciseName;
     }
+    this.state.updateWorkout(this.workout);
   }
 
   get currentExercise(): Exercise | null {
@@ -58,6 +59,10 @@ export class WorkoutComponent {
     );
     if (!exercise) return null;
     return exercise;
+  }
+
+  loadExercise(exercise: Exercise) {
+    this.currentExerciseName = exercise.name;
   }
 
   completeExercise() {

@@ -40,7 +40,7 @@
     </button>
   </div>
   <div *ngIf="!currentExerciseName" class="flex flex-grow">
-    <app-exercise-list [workout]="workout"></app-exercise-list>
+    <app-exercise-list [workout]="workout" (loadExercise)="loadExercise($event)"></app-exercise-list>
   </div>
   <app-complete-workout
     class="w-full"
