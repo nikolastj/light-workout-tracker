@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Workout } from '../models/workout.model';
 import { CommonModule } from '@angular/common';
 import { Exercises } from '../data/exercises.data';
 import { NgSelectModule } from '@ng-select/ng-select';
