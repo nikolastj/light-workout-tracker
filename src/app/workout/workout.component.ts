@@ -10,6 +10,7 @@ import { Exercise } from '../models/exercise.model';
 import { ExerciseListComponent } from './exercise-list/exercise-list.component';
 import { CompleteWorkoutComponent } from './complete-workout/complete-workout.component';
 import { SetControlsComponent } from './set-controls/set-controls.component';
+import { WorkoutStateService } from './workout-state.service';
 
 @Component({
   selector: 'app-workout',
@@ -28,51 +29,12 @@ import { SetControlsComponent } from './set-controls/set-controls.component';
   styleUrl: './workout.component.scss',
 })
 export class WorkoutComponent {
-  workout = {
-    dateCreated: '2024-11-16T18:51:36.196Z',
-    id: '20241116195136',
-    exercises: [
-      {
-        id: 'Hip Thrust',
-        name: 'Hip Thrust',
-        sets: [
-          {
-            reps: 12,
-            weight: 32,
-          },
-          {
-            reps: 12,
-            weight: 32,
-          },
-        ],
-      },
-      {
-        id: 'Chest Press',
-        name: 'Chest Press',
-        sets: [
-          {
-            reps: 10,
-            weight: 30,
-          },
-          {
-            reps: 10,
-            weight: 30,
-          },
-          {
-            reps: 10,
-            weight: 30,
-          },
-          {
-            reps: 10,
-            weight: 30,
-          },
-        ],
-      },
-    ],
-  } as any as Workout;
-  hideButton = true; //false;
-  currentExerciseName?: string; //= 'Hip Thrust';
+  workout = this.state.workout;
+  hideButton = true;
+  currentExerciseName?: string;
   exerciseList = Exercises;
+
+  constructor(private state: WorkoutStateService) {}
 
   addExercise() {
     this.hideButton = true;
@@ -100,6 +62,5 @@ export class WorkoutComponent {
 
   completeExercise() {
     delete this.currentExerciseName;
-    console.log(this.workout);
   }
 }

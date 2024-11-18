@@ -4,5 +4,5 @@ import { WorkoutComponent } from './workout/workout.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'workout/:id', component: WorkoutComponent },
+  { path: 'workout', component: WorkoutComponent },
 ];

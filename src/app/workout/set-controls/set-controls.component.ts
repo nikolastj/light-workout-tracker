@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Workout } from '../../models/workout.model';
 import { Set } from '../../models/set.model';
 import { Exercise } from '../../models/exercise.model';
+import { WorkoutStateService } from '../workout-state.service';
 
 @Component({
   selector: 'app-set-controls',
@@ -21,6 +22,8 @@ export class SetControlsComponent {
 
   currentSetWeight = 30;
   reps = 10;
+
+  constructor(private state: WorkoutStateService) {}
 
   incrementWeight(amount: number) {
     this.currentSetWeight += amount;
@@ -85,9 +88,11 @@ export class SetControlsComponent {
 
     exercise.sets.push(newSet);
     console.log(this.workout);
+    this.state.updateWorkout(this.workout);
   }
 
   completeExercise() {
+    this.state.updateWorkout(this.workout);
     this.onComplete.emit(null);
     console.log(this.workout);
   }
