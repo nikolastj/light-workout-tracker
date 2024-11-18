@@ -53,4 +53,6 @@ export const Exercises = [
   'Tricep Overhead Extension (Triceps)',
   'Tricep Pushdown (Triceps)',
   'Upright Row (Shoulders)',
+  'Abductor Machine (Legs)',
+  'Adductor Machine (Legs)',
 ];
