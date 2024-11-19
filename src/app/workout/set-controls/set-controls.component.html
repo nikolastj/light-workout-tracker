@@ -128,30 +128,9 @@
   </div>
   }
 </div>
-
-<div class="flex flex-col">
-  <div class="uppercase pb-2 text-xs text-gray-400">
-    previous exercise session DD-MM-YYYY
-  </div>
-  <div class="flex flex-wrap h-[88px]">
-    <div
-      class="flex items-center text-gray-100 text-xs border-r-2 border-solid border-white pr-1"
-    >
-      <div class="flex flex-col items-center justify-center">
-        <span>SET</span><span class="text-xs"> kg/reps</span>
-      </div>
-    </div>
-    @for (set of currentExercise?.sets; track set; let i = $index) {
-    <div
-      class="flex items-center text-gray-100 text-xl border-r-2 border-solid border-white px-1"
-    >
-      <span class="text-gray-400">{{ i + 1 }}.&nbsp;</span>
-      {{ set.weight }} <i class="fas fa-times text-gray-400"></i>
-      {{ set.reps }}
-    </div>
-    }
-  </div>
-</div>
+<app-last-loaded-exercise
+  [exerciseName]="currentExerciseName"
+></app-last-loaded-exercise>
 
 <button
   mat-raised-button

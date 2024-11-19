@@ -7,11 +7,18 @@ import { Workout } from '../../models/workout.model';
 import { Set } from '../../models/set.model';
 import { Exercise } from '../../models/exercise.model';
 import { WorkoutStateService } from '../workout-state.service';
+import { LastLoadedExerciseComponent } from '../last-loaded-exercise/last-loaded-exercise.component';
 
 @Component({
   selector: 'app-set-controls',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    LastLoadedExerciseComponent,
+  ],
   templateUrl: './set-controls.component.html',
   styleUrl: './set-controls.component.scss',
 })
