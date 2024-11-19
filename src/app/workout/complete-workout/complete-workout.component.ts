@@ -18,7 +18,7 @@ export class CompleteWorkoutComponent {
   submit() {
     if (!this.workout) return;
     navigator.clipboard
-      .write(this.copyWorkoutToClipboard(this.workout))
+      .writeText(Workout.toString(this.workout))
       .then(() => {
         console.log('Copied to clipboard successfully!');
         this.router.navigate(['']);
@@ -28,19 +28,17 @@ export class CompleteWorkoutComponent {
       });
   }
 
+  //not used
   copyWorkoutToClipboard(workout: Workout): ClipboardItem[] {
     const dateFormatted = new Intl.DateTimeFormat('en-GB').format(
       new Date(workout.dateCreated)
     );
 
-    // Start with the formatted date (underlined)
     let formattedContent = `<u>${dateFormatted}</u><br><br>`;
 
     workout.exercises.forEach((exercise, index) => {
-      // Add exercise name in bold
       formattedContent += `<b>${index + 1}. ${exercise.name}</b><br>`;
 
-      // Format sets as "kgxreps | kgxreps"
       const setsFormatted = exercise.sets
         .map((set) => `${set.weight}x${set.reps}`)
         .join(' | ');
@@ -48,7 +46,6 @@ export class CompleteWorkoutComponent {
       formattedContent += `${setsFormatted}<br><br>`;
     });
 
-    // Use Clipboard API with rich text
     const blob = new Blob([formattedContent], { type: 'text/html' });
     const clipboardItem = new ClipboardItem({ 'text/html': blob });
 

@@ -1,12 +1,21 @@
 <div
-  class="init-page p-4 bg-gray-900 w-full h-full flex items-center justify-center"
+  class="init-page p-4 bg-gray-900 w-full h-full flex items-center justify-center gap-8 flex-col"
 >
   <button
     mat-raised-button
     color="primary"
-    class="mt-4 p-4 bg-orange-500 text-gray-900 text-2xl rounded-lg uppercase font-bold"
+    class="mt-4 w-full p-4 bg-orange-500 text-gray-900 text-2xl rounded-lg uppercase font-bold"
     (click)="startWorkout()"
   >
     Start
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="mt-4 w-full p-4 bg-orange-800 text-gray-900 text-2xl rounded-lg uppercase font-bold"
+    (click)="copyAll()"
+  >
+    Get All Workouts
   </button>
 </div>

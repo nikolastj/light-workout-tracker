@@ -25,7 +25,7 @@ export class WorkoutStateService {
     return workouts.find((workout) => workout.id === workoutId);
   }
 
-  private getAllWorkouts(): Workout[] {
+  getAllWorkouts(): Workout[] {
     const storedWorkouts = localStorage.getItem(this.localStorageKey);
     return storedWorkouts ? JSON.parse(storedWorkouts) : [];
   }

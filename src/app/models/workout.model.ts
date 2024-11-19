@@ -15,10 +15,25 @@ export class Workout {
     const year = this.dateCreated.getFullYear();
     const month = String(this.dateCreated.getMonth() + 1).padStart(2, '0');
     const day = String(this.dateCreated.getDate()).padStart(2, '0');
-    // const hours = String(this.dateCreated.getHours()).padStart(2, '0');
-    // const minutes = String(this.dateCreated.getMinutes()).padStart(2, '0');
-    // const seconds = String(this.dateCreated.getSeconds()).padStart(2, '0');
 
-    return `${year}${month}${day}`; //${hours}${minutes}${seconds}
+    return `${year}${month}${day}`;
+  }
+
+  static toString(workout:Workout): string {
+    let formattedContent = new Intl.DateTimeFormat('en-GB').format(
+      new Date(workout.dateCreated)
+    );
+    formattedContent = `${formattedContent}\n\n`;
+    workout.exercises.forEach((exercise, index) => {
+      formattedContent += `${index + 1}. ${exercise.name}\n`;
+
+      const setsFormatted = exercise.sets
+        .map((set) => `   ${set.weight}x${set.reps}`)
+        .join(' | ');
+
+      formattedContent += `${setsFormatted}\n\n`;
+    });
+
+    return formattedContent;
   }
 }
